@@ -1,5 +1,6 @@
 package com.estudos.course.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,8 @@ import java.util.List;
 @Table(name = "tb_user")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User implements Serializable {
     @Serial
@@ -26,6 +28,7 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     @Setter(AccessLevel.PRIVATE)
     private List<Order> orders  = new ArrayList<>();
