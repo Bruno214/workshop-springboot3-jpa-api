@@ -9,13 +9,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_category")
-@EqualsAndHashCode
+@Table(name = "tb_products")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Category implements Serializable {
+@EqualsAndHashCode
+public class Product implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -25,11 +24,17 @@ public class Category implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String name;
+    private String description;
+    private Double price;
+    private String imgUrl;
     @Transient
-    private Set<Product> products = new HashSet<>();
+    private Set<Category> categories = new HashSet<>();
 
-    public Category(Long id, String name) {
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
 }
